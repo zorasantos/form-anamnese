@@ -26,7 +26,7 @@ const Preview = () => {
             </Button>
           </Toolbar>
         </AppBar>
-
+        <h1 className="text-3xl font-bold underline text-red-600">Hello world!</h1>
         <AutoForm schema={validateSchema} onSubmit={console.log} />
       </Dialog>
     </>
