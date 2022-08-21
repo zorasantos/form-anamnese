@@ -2,9 +2,7 @@ import AppRoutes from './routes';
 
 function App() {
   return (
-    <div>
-      <h1 className="text-3xl font-bold underline text-red-600">Hello world!</h1>
-
+    <div className="w-2/3 mx-auto p-5">
       <AppRoutes />
     </div>
   );
