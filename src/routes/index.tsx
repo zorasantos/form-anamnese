@@ -1,13 +1,13 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import Editor from '../pages/editor';
-import Preview from '../pages/preview';
+import Auth from '../pages/auth';
+import Form from '../pages/form';
 
 const AppRoutes: React.FunctionComponent = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Editor />} />
-        <Route path="/preview" element={<Preview />} />
+        <Route path="/" element={<Auth />} />
+        <Route path="/form" element={<Form />} />
       </Routes>
     </BrowserRouter>
   );
