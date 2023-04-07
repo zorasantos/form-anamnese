@@ -1,8 +1,10 @@
 <script setup lang="ts">
-import { BoxCount, Title } from "~/components";
+import { TextSupportVue, Title } from "~/components";
 </script>
 
 <template>
-  <Title msg="Welcome to vue 3" />
-  <BoxCount />
+  <div class="flex flex-col items-center gap-5">
+    <Title msg="APOIO PARA CONHECER VOCÊ MELHOR" />
+    <TextSupportVue />
+  </div>
 </template>
