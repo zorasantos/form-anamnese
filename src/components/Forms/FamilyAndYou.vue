@@ -13,6 +13,18 @@ const ageWhenMotherDied = ref("");
 const motherOccupation = ref("");
 const motherDescription = ref("");
 const relationshipProblems = ref("");
+const relationshipBrothers = ref("");
+const atmosphereHome = ref("");
+const importantChanges = ref("");
+const anyoneImportantForMe = ref("");
+const psychiatricTreatment = ref(null);
+const historyOfMentalIllness = ref(null);
+const relatedPerson = ref(null);
+const anyMemberFamilySuicideAttempt = ref(null);
+const anyMemberFamilyDiedBySuicide = ref(null);
+
+const members = ref([{ name: "", problems: "" }]);
+
 const incomoda = ref(null);
 const manyChildren = ref("");
 const personsList = ref([
@@ -40,7 +52,13 @@ const persons = ref([
   },
 ]);
 
-console.log("persons", persons);
+const addMember = () => {
+  members.value.push({ name: "", problems: "" });
+};
+
+const removeMember = (index: number) => {
+  members.value.splice(index, 1);
+};
 
 function addPerson() {
   personsList.value.push({
@@ -52,19 +70,12 @@ function addPerson() {
   });
 }
 
-console.log("addPerson Person", personsList);
-
 // function removePerson(index: number) {
 //   persons.value.splice(index, 1);
 // }
 
 function onSubmit() {
-  console.log(
-    incomoda.value,
-    placeOfBirth.value,
-    fatherAge.value,
-    fatherDeathAge.value,
-  );
+  console.log(members.value);
 }
 </script>
 <template>
@@ -169,39 +180,135 @@ function onSubmit() {
     <fieldset v-for="(person, index) in persons" :key="index">
       <v-row>
         <v-col cols="4">
-          <v-text-field label="Nome" v-model="person.name"></v-text-field>
+          <v-text-field density="compact" label="Nome" v-model="person.name" />
         </v-col>
         <v-col cols="4">
           <v-text-field
+            density="compact"
             label="Ocupação"
             v-model="person.occupation"
-          ></v-text-field>
+          />
         </v-col>
         <v-col cols="2">
           <v-text-field
             label="Idade"
+            density="compact"
             v-model.number="person.age"
-          ></v-text-field>
+          />
         </v-col>
         <v-col cols="2">
           <v-autocomplete
             label="Sexo"
             v-model="person.gender"
             :items="genderOptions"
+            density="compact"
             item-title="name"
             item-value="value"
             placeholder="Selecione"
-          ></v-autocomplete>
+          />
         </v-col>
         <v-col cols="12">
           <v-textarea
+            density="compact"
+            rows="3"
             label="Comentários"
             v-model="person.comments"
-          ></v-textarea>
+          />
         </v-col>
       </v-row>
+      <v-btn color="primary" @click="addPerson">Adicionar</v-btn>
     </fieldset>
-    <v-btn color="primary" @click="addPerson">Adicionar</v-btn>
+
+    <v-textarea
+      density="compact"
+      rows="3"
+      label="Por favor, descreva as relações importantes com seus irmãos, se são benéficas ou problemáticas para você."
+      v-model="relationshipBrothers"
+    />
+
+    <v-textarea
+      density="compact"
+      rows="3"
+      label="Como era o clima geral na sua casa?"
+      v-model="atmosphereHome"
+    />
+
+    <v-textarea
+      density="compact"
+      rows="3"
+      label="Houve alterações importantes, por exemplo, mudanças ou outro evento significativo, durante a sua infância ou adolescência? Inclua alguma separação da família. Por favor, dê as idades aproximadas e detalhes."
+      v-model="importantChanges"
+    />
+
+    <v-textarea
+      density="compact"
+      rows="3"
+      label="Houve mais alguém que tenha sido importante para você durante a sua infância (p. ex., avós, tias/tios, amigo da família, etc.)? Em caso afirmativo, você poderia nos contar alguma coisa sobre ele?"
+      v-model="anyoneImportantForMe"
+    />
+
+    <p class="pb-5 font-medium">
+      Alguém na sua família já recebeu tratamento psiquiátrico?
+    </p>
+    <v-radio-group v-model="psychiatricTreatment" inline>
+      <v-radio label="Sim" value="0"></v-radio>
+      <v-radio label="Não" value="1"></v-radio>
+    </v-radio-group>
+    <p class="pb-5 font-medium">
+      Alguém na sua família tem história de doença mental, álcool ou abuso de
+      drogas?
+    </p>
+    <v-radio-group v-model="historyOfMentalIllness" inline>
+      <v-radio label="Sim" value="0"></v-radio>
+      <v-radio label="Não" value="1"></v-radio>
+    </v-radio-group>
+
+    <p class="pb-5 font-medium">Em caso afirmativo, por favor, preencha:</p>
+    <v-row v-for="(member, index) in members" :key="index">
+      <v-col cols="12" md="4">
+        <v-text-field v-model="member.name" label="Membro da família" />
+      </v-col>
+      <v-col cols="12" md="7">
+        <v-textarea
+          v-model="member.problems"
+          rows="2"
+          label="Lista de problemas psiquiátricos específicos, abuso de álcool ou drogas"
+        />
+      </v-col>
+      <v-col cols="12" md="1">
+        <v-btn icon color="error" @click="removeMember(index)">
+          <v-icon>mdi-delete</v-icon>
+        </v-btn>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col>
+        <v-btn @click="addMember" color="primary">Adicionar novo membro</v-btn>
+      </v-col>
+    </v-row>
+
+    <p class="pb-5 font-medium">
+      Algum membro da sua família já teve uma tentativa de suicídio?
+    </p>
+
+    <v-radio-group v-model="anyMemberFamilySuicideAttempt" inline>
+      <v-radio label="Sim" value="0"></v-radio>
+      <v-radio label="Não" value="1"></v-radio>
+    </v-radio-group>
+
+    <p class="pb-5 font-medium">
+      Em caso afirmativo, qual seu grau de parentesco com essa pessoa?
+    </p>
+    <v-text-field v-model="relatedPerson" label="Grau de parentesco" />
+
+    <p class="pb-5 font-medium">
+      Algum membro da sua família já morreu por suicídio?
+    </p>
+
+    <v-radio-group v-model="anyMemberFamilyDiedBySuicide" inline>
+      <v-radio label="Sim" value="0"></v-radio>
+      <v-radio label="Não" value="1"></v-radio>
+    </v-radio-group>
 
     <v-btn class="w-full bg-blue-600 text-white" type="submit">Submit</v-btn>
   </v-form>
