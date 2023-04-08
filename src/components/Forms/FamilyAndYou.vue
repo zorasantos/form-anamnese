@@ -13,9 +13,58 @@ const ageWhenMotherDied = ref("");
 const motherOccupation = ref("");
 const motherDescription = ref("");
 const relationshipProblems = ref("");
+const incomoda = ref(null);
+const manyChildren = ref("");
+const personsList = ref([
+  {
+    name: "",
+    occupation: "",
+    age: null,
+    gender: "",
+    comments: "",
+  },
+]);
+
+const genderOptions = [
+  { name: "Masculino", value: "M" },
+  { name: "Feminino", value: "F" },
+  { name: "Outro", value: "O" },
+];
+const persons = ref([
+  {
+    name: "",
+    occupation: "",
+    age: null,
+    gender: "",
+    comments: "",
+  },
+]);
+
+console.log("persons", persons);
+
+function addPerson() {
+  personsList.value.push({
+    name: "",
+    occupation: "",
+    age: null,
+    gender: "",
+    comments: "",
+  });
+}
+
+console.log("addPerson Person", personsList);
+
+// function removePerson(index: number) {
+//   persons.value.splice(index, 1);
+// }
 
 function onSubmit() {
-  console.log(placeOfBirth.value, fatherAge.value, fatherDeathAge.value);
+  console.log(
+    incomoda.value,
+    placeOfBirth.value,
+    fatherAge.value,
+    fatherDeathAge.value,
+  );
 }
 </script>
 <template>
@@ -91,6 +140,68 @@ function onSubmit() {
       v-model="relationshipProblems"
       label="Se existiram/existem problemas no seu relacionamento com seus pais, por favor, descreva o(s) mais importante(s)."
     />
+    <p class="pb-5 font-medium">O quanto isso o incomoda atualmente?</p>
+    <v-radio-group v-model="incomoda">
+      <v-radio label="Em absoluto" value="absoluto"></v-radio>
+      <v-radio label="Um pouco" value="pouco"></v-radio>
+      <v-radio label="Moderadamente" value="moderadamente"></v-radio>
+      <v-radio label="Muito" value="muito"></v-radio>
+      <v-radio label="Não poderia ser pior" value="pior"></v-radio>
+    </v-radio-group>
+
+    <p class="pb-5 font-medium">
+      Por favor, dê alguns detalhes sobre seus irmãos e irmãs (se souber)
+    </p>
+
+    <v-text-field
+      v-model="manyChildren"
+      type="number"
+      label="Quantos filhos, incluindo você, há na sua família?"
+    />
+
+    <p class="pb-5 font-medium">
+      Por favor, dê seus nomes e outros detalhes listados abaixo. Inclua você e,
+      por favor, comece pelo mais velho. Inclua também meio-irmãos, filhos de
+      padrasto ou madrasta ou outras crianças adotadas por seus pais e indique
+      quem são elas.
+    </p>
+
+    <fieldset v-for="(person, index) in persons" :key="index">
+      <v-row>
+        <v-col cols="4">
+          <v-text-field label="Nome" v-model="person.name"></v-text-field>
+        </v-col>
+        <v-col cols="4">
+          <v-text-field
+            label="Ocupação"
+            v-model="person.occupation"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="2">
+          <v-text-field
+            label="Idade"
+            v-model.number="person.age"
+          ></v-text-field>
+        </v-col>
+        <v-col cols="2">
+          <v-autocomplete
+            label="Sexo"
+            v-model="person.gender"
+            :items="genderOptions"
+            item-title="name"
+            item-value="value"
+            placeholder="Selecione"
+          ></v-autocomplete>
+        </v-col>
+        <v-col cols="12">
+          <v-textarea
+            label="Comentários"
+            v-model="person.comments"
+          ></v-textarea>
+        </v-col>
+      </v-row>
+    </fieldset>
+    <v-btn color="primary" @click="addPerson">Adicionar</v-btn>
 
     <v-btn class="w-full bg-blue-600 text-white" type="submit">Submit</v-btn>
   </v-form>
