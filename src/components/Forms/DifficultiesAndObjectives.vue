@@ -23,17 +23,17 @@ function onSubmit() {
       v-model="difficultFirst"
       rows="2"
       label="Primeira dificuldade"
-    ></v-textarea>
+    />
     <v-textarea
       v-model="difficultSecond"
       rows="2"
       label="Segunda dificuldade"
-    ></v-textarea>
+    />
     <v-textarea
       v-model="difficultThird"
       rows="2"
       label="Terceira dificuldade"
-    ></v-textarea>
+    />
 
     <p class="pb-5 font-medium">
       Por favor, diga o que você deseja alcançar com a terapia.
@@ -42,7 +42,7 @@ function onSubmit() {
       v-model="objective"
       rows="3"
       label="Objetivo que deseja alcançar"
-    ></v-textarea>
+    />
 
     <v-btn class="w-full bg-blue-600 text-white" type="submit">Submit</v-btn>
   </v-form>
