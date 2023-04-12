@@ -151,6 +151,7 @@ function onSubmit() {
       v-model="relationshipProblems"
       label="Se existiram/existem problemas no seu relacionamento com seus pais, por favor, descreva o(s) mais importante(s)."
     />
+
     <p class="pb-5 font-medium">O quanto isso o incomoda atualmente?</p>
     <v-radio-group v-model="incomoda">
       <v-radio label="Em absoluto" value="absoluto"></v-radio>

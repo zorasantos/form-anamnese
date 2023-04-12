@@ -6,8 +6,10 @@ import FamilyAndYou from "./Forms/FamilyAndYou.vue";
 import Education from "./Forms/Education.vue";
 import Professional from "./Forms/Professional.vue";
 import ExperienceOfDisturbingEvents from "./Forms/ExperienceOfDisturbingEvents.vue";
+import CurrentFamily from "./Forms/CurrentFamily.vue";
 
 export {
+  CurrentFamily,
   DifficultiesAndObjectives,
   Education,
   ExperienceOfDisturbingEvents,
