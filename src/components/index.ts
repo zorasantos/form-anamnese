@@ -10,6 +10,7 @@ import CurrentFamily from "./Forms/CurrentFamily.vue";
 import PsychiatricHistory from "./Forms/PsychiatricHistory.vue";
 import MedicalHistory from "./Forms/MedicalHistory.vue";
 import HistoryAlcoholAndDrugsUse from "./Forms/HistoryAlcoholAndDrugsUse.vue";
+import PerspectivesForFuture from "./Forms/PerspectivesForFuture.vue";
 
 export {
   CurrentFamily,
@@ -20,6 +21,7 @@ export {
   HistoryAlcoholAndDrugsUse,
   MedicalHistory,
   PersonalData,
+  PerspectivesForFuture,
   Professional,
   PsychiatricHistory,
   TextSupportVue,
