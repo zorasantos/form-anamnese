@@ -8,6 +8,9 @@ const address = ref("");
 const phone = ref("");
 const lastTimeCheckUp = ref("");
 const isTreatedPastYear = ref(null);
+const isPregnant = ref(null);
+const isSeizuresOrEpilepsy = ref(null);
+const isHeartValve = ref(null);
 const detailTreatedPastYear = ref("");
 const isChangesGeneralHealth = ref(null);
 const detailChangesGeneralHealth = ref("");
@@ -187,7 +190,7 @@ function onSubmit() {
       Você está grávida ou acha que pode estar?
     </p>
 
-    <v-radio-group v-model="isChangesGeneralHealth" inline>
+    <v-radio-group v-model="isPregnant" inline>
       <v-radio label="Sim" value="0" />
       <v-radio label="Não" value="1" />
     </v-radio-group>
@@ -196,7 +199,7 @@ function onSubmit() {
       Você já teve ataques, acessos, convulsões ou epilepsia?
     </p>
 
-    <v-radio-group v-model="isChangesGeneralHealth" inline>
+    <v-radio-group v-model="isSeizuresOrEpilepsy" inline>
       <v-radio label="Sim" value="0" />
       <v-radio label="Não" value="1" />
     </v-radio-group>
@@ -205,7 +208,7 @@ function onSubmit() {
       Você tem prótese de válvula cardíaca?
     </p>
 
-    <v-radio-group v-model="isChangesGeneralHealth" inline>
+    <v-radio-group v-model="isHeartValve" inline>
       <v-radio label="Sim" value="0" />
       <v-radio label="Não" value="1" />
     </v-radio-group>

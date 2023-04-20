@@ -9,6 +9,7 @@ import ExperienceOfDisturbingEvents from "./Forms/ExperienceOfDisturbingEvents.v
 import CurrentFamily from "./Forms/CurrentFamily.vue";
 import PsychiatricHistory from "./Forms/PsychiatricHistory.vue";
 import MedicalHistory from "./Forms/MedicalHistory.vue";
+import HistoryAlcoholAndDrugsUse from "./Forms/HistoryAlcoholAndDrugsUse.vue";
 
 export {
   CurrentFamily,
@@ -16,6 +17,7 @@ export {
   Education,
   ExperienceOfDisturbingEvents,
   FamilyAndYou,
+  HistoryAlcoholAndDrugsUse,
   MedicalHistory,
   PersonalData,
   Professional,
