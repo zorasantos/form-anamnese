@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { Title } from "~/components";
 
 const mentionParticularSatisfaction = ref("");
 const plansHopesAndExpectations = ref("");
@@ -12,6 +13,8 @@ function onSubmit() {
 }
 </script>
 <template>
+  <Title msg="SUAS PERSPECTIVAS QUANTO AO FUTURO" />
+
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <p class="pb-5 text-lg font-medium">
       Por favor, mencione alguma satisfação particular que você obtém com a sua

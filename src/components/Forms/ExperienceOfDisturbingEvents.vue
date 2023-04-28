@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { Title } from "~/components";
 
 const experienceOfDisturbing = ref("");
 const isExperienceOfDisturbing = ref("");
@@ -29,6 +30,7 @@ function onSubmit() {
 }
 </script>
 <template>
+  <Title msg="EXPERIÊNCIA DE ACONTECIMENTOS PERTURBADORES" />
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <v-alert type="error">Validar as condições de algumas respostas</v-alert>
     <p class="pb-5 font-medium">

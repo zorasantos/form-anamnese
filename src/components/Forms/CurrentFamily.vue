@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { Title } from "~/components";
 
 const previousRelationship = ref("");
 const isCurrentDatingPartner = ref(null);
@@ -37,6 +38,7 @@ function onSubmit() {
 }
 </script>
 <template>
+  <Title msg="SEU PARCEIRO E SUA FAMÍLIA ATUAL" />
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <p class="pb-5 text-lg font-medium">Sobre o(s) seu(s) parceiro(s)</p>
     <p class="pb-2">

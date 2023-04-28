@@ -11,7 +11,7 @@ import PsychiatricHistory from "./Forms/PsychiatricHistory.vue";
 import MedicalHistory from "./Forms/MedicalHistory.vue";
 import HistoryAlcoholAndDrugsUse from "./Forms/HistoryAlcoholAndDrugsUse.vue";
 import PerspectivesForFuture from "./Forms/PerspectivesForFuture.vue";
-
+import WrapperForm from "./WrapperForm/index.vue";
 export {
   CurrentFamily,
   DifficultiesAndObjectives,
@@ -26,4 +26,5 @@ export {
   PsychiatricHistory,
   TextSupportVue,
   Title,
+  WrapperForm,
 };

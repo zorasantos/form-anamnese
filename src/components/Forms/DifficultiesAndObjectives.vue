@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { Title } from "~/components";
 
 const difficultFirst = ref("");
 const difficultSecond = ref("");
@@ -14,6 +15,7 @@ function onSubmit() {
 }
 </script>
 <template>
+  <Title msg="SUAS DIFICULDADES E OBJETIVOS" />
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <p class="pb-5 font-medium">
       Por favor, liste resumidamente as três dificuldades principais que o

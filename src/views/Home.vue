@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { PerspectivesForFuture, TextSupportVue, Title } from "~/components";
+import { WrapperForm, TextSupportVue, Title } from "~/components";
 </script>
 
 <template>
   <div class="flex flex-col gap-5">
     <Title msg="APOIO PARA CONHECER VOCÊ MELHOR" />
     <TextSupportVue />
-    <PerspectivesForFuture />
+    <WrapperForm />
   </div>
 </template>
+<!-- Criar uma Página que terá o acesso com autenticação e os formulários  -->

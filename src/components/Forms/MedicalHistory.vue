@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { Title } from "~/components";
 
 const isReferralMedic = ref(null);
 const name = ref("");
@@ -47,6 +48,7 @@ function onSubmit() {
 }
 </script>
 <template>
+  <Title msg="SUA HISTÓRIA MÉDICA" />
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <p class="pb-5 text-lg font-medium">
       Você tem um médico de referência que você visita para realização de

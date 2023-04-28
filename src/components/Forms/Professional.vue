@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { Title } from "~/components";
 
 const occupation = ref("");
 const aboutYourOccupation = ref("");
@@ -12,6 +13,7 @@ function onSubmit() {
 }
 </script>
 <template>
+  <Title msg="SUA HISTÓRIA LABORAL/PROFISSIONAL" />
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <p class="pb-5 font-medium">
       Que atividade ou papel principal você desempenha atualmente?

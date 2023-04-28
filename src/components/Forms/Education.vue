@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { Title } from "~/components";
 
 const aboutSchoolingAndEducation = ref("");
 const likeSchool = ref("");
@@ -12,6 +13,8 @@ function onSubmit() {
 }
 </script>
 <template>
+  <Title msg="SUA EDUCAÇÃO" />
+
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <p class="pb-5 font-medium">
       Por favor, conte-nos alguma coisa sobre a sua escolaridade e a sua

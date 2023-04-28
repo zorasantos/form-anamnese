@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { Title } from "~/components";
 
 const isAlcoholCausedProblems = ref(null);
 const isYourDrinkingBehavior = ref(null);
@@ -18,6 +19,7 @@ function onSubmit() {
 }
 </script>
 <template>
+  <Title msg="HISTÓRIA DE USO DE ÁLCOOL E DROGAS" />
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <p class="pb-5 text-lg font-medium">
       O seu uso de álcool já lhe causou algum problema?

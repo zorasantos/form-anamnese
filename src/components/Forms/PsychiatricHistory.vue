@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { Title } from "~/components";
 
 const isHospitalized = ref(null);
 const isHospitalizedAfterAttemptedSuicide = ref(null);
@@ -90,6 +91,7 @@ function onSubmit() {
 }
 </script>
 <template>
+  <Title msg="SUA HISTÓRIA PSIQUIÁTRICA" />
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <p class="pb-5 text-lg font-medium">
       Você já foi hospitalizado por algum motivo emocional ou psiquiátrico?

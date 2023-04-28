@@ -1,19 +1,22 @@
 <script setup lang="ts">
+import { Title } from "~/components";
 import { ref } from "vue";
 
-const name = ref("");
-const birthday = ref("");
-const gender = ref("");
-const occupation = ref("");
-const maritalStatus = ref("");
-const religion = ref("");
-const zipCode = ref("");
-const street = ref("");
-const number = ref("");
-const addressDetails = ref("");
-const neighborhood = ref("");
-const city = ref("");
-const state = ref("");
+const formData = ref({
+  name: "",
+  birthday: "",
+  gender: "",
+  occupation: "",
+  maritalStatus: "",
+  religion: "",
+  zipCode: "",
+  street: "",
+  number: "",
+  addressDetails: "",
+  neighborhood: "",
+  city: "",
+  state: "",
+});
 
 const genderList = ref([
   { name: "Masculino", value: "M" },
@@ -23,13 +26,18 @@ const genderList = ref([
 
 function onSubmit() {
   // submit to backend or whatever you like
-  console.log(name.value, birthday.value, gender.value);
+  console.log(
+    formData.value.name,
+    formData.value.birthday,
+    formData.value.gender,
+  );
 }
 </script>
 <template>
+  <Title msg="SEUS DADOS PESSOAIS" />
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <v-text-field
-      v-model="name"
+      v-model="formData.name"
       autofocus
       id="name"
       name="name"
@@ -39,7 +47,7 @@ function onSubmit() {
     />
 
     <v-text-field
-      v-model="birthday"
+      v-model="formData.birthday"
       id="birthday"
       name="birthday"
       label="Data de Nascimento"
@@ -47,7 +55,7 @@ function onSubmit() {
       placeholder="Insira seu nome completo"
     />
     <v-autocomplete
-      v-model="gender"
+      v-model="formData.gender"
       :items="genderList"
       name="gender"
       label="Sexo"
@@ -57,7 +65,7 @@ function onSubmit() {
     />
 
     <v-text-field
-      v-model="occupation"
+      v-model="formData.occupation"
       id="occupation"
       name="occupation"
       label="Ocupação"
@@ -65,7 +73,7 @@ function onSubmit() {
     />
 
     <v-text-field
-      v-model="maritalStatus"
+      v-model="formData.maritalStatus"
       id="maritalStatus"
       name="maritalStatus"
       label="Estado Civil"
@@ -73,7 +81,7 @@ function onSubmit() {
     />
 
     <v-text-field
-      v-model="religion"
+      v-model="formData.religion"
       id="religion"
       name="religion"
       label="Religião"
@@ -84,7 +92,7 @@ function onSubmit() {
 
     <div>
       <v-text-field
-        v-model="zipCode"
+        v-model="formData.zipCode"
         id="zipCode"
         name="zipCode"
         label="CEP"
@@ -92,7 +100,7 @@ function onSubmit() {
       />
 
       <v-text-field
-        v-model="street"
+        v-model="formData.street"
         id="street"
         name="street"
         label="Rua"
@@ -100,7 +108,7 @@ function onSubmit() {
       />
 
       <v-text-field
-        v-model="number"
+        v-model="formData.number"
         id="number"
         name="number"
         label="Número"
@@ -108,7 +116,7 @@ function onSubmit() {
       />
 
       <v-text-field
-        v-model="addressDetails"
+        v-model="formData.addressDetails"
         id="addressDetails"
         name="addressDetails"
         label="Complemento"
@@ -116,7 +124,7 @@ function onSubmit() {
       />
 
       <v-text-field
-        v-model="neighborhood"
+        v-model="formData.neighborhood"
         id="neighborhood"
         name="neighborhood"
         label="Bairro"
@@ -124,7 +132,7 @@ function onSubmit() {
       />
 
       <v-text-field
-        v-model="city"
+        v-model="formData.city"
         id="city"
         name="city"
         label="Cidade"
@@ -132,7 +140,7 @@ function onSubmit() {
       />
 
       <v-text-field
-        v-model="state"
+        v-model="formData.state"
         id="state"
         name="state"
         label="Estado"

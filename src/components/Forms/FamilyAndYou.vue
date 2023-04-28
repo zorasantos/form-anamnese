@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
+import { Title } from "~/components";
 
 const placeOfBirth = ref("");
 const fatherAge = ref("");
@@ -79,6 +80,7 @@ function onSubmit() {
 }
 </script>
 <template>
+  <Title msg="VOCÊ E SUA FAMÍLIA" />
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <v-text-field
       v-model="placeOfBirth"
