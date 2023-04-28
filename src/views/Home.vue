@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { WrapperForm, TextSupportVue, Title } from "~/components";
+import { WrapperForm } from "~/components";
+// import { WrapperForm, TextSupportVue, Title } from "~/components";
 </script>
 
 <template>
   <div class="flex flex-col gap-5">
-    <Title msg="APOIO PARA CONHECER VOCÊ MELHOR" />
-    <TextSupportVue />
+    <!-- <Title msg="APOIO PARA CONHECER VOCÊ MELHOR" />
+    <TextSupportVue /> -->
     <WrapperForm />
   </div>
 </template>

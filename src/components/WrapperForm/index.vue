@@ -31,9 +31,10 @@ const formComponents = [
 const indexForm = ref(0);
 const nextForm = () => {
   indexForm.value = (indexForm.value + 1) % formComponents.length;
+  window.scrollTo({ top: 0, behavior: "smooth" });
 };
 </script>
 <template>
   <component :is="formComponents[indexForm]" />
-  <button @click="nextForm">Next Form</button>
+  <button class="bg-yellow-500 h-14 w-full" @click="nextForm">Next Form</button>
 </template>
