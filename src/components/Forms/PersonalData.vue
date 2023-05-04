@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { Title } from "~/components";
 import { personalDataSchema } from "../Validators/Schemas";
-import { FormDataProps, GenderListProps } from "./types";
 import { useField, useForm } from "vee-validate";
 import { reactive } from "vue";
+import { FormDataProps, GenderListProps } from "~/types";
 
 const genderList = reactive<GenderListProps>([
   { name: "Masculino", value: "M" },
