@@ -88,10 +88,12 @@ function onSubmit() {
     <v-text-field
       id="placeOfBirth"
       name="placeOfBirth"
+      required
       v-model="placeOfBirth"
     />
 
     <v-divider />
+    <!-- Fildset do pai não será obrigatório -->
     <h2 class="pb-5 text-lg font-medium">
       Por favor, dê alguns detalhes sobre seu PAI (se souber)
     </h2>
@@ -148,6 +150,8 @@ function onSubmit() {
 
     <v-divider />
     <!-- Encontrar uma forma(UI) de destacar esses subtitulos -->
+    <!-- Fildset da mãe não será obrigatório -->
+
     <p class="pb-5 font-medium">
       Por favor, dê alguns detalhes sobre sua MÃE (se souber)
     </p>
@@ -355,7 +359,7 @@ function onSubmit() {
     <p class="pb-5 font-medium">
       Alguém na sua família já recebeu tratamento psiquiátrico?
     </p>
-    <v-radio-group v-model="psychiatricTreatment" inline>
+    <v-radio-group required v-model="psychiatricTreatment" inline>
       <v-radio label="Sim" value="0"></v-radio>
       <v-radio label="Não" value="1"></v-radio>
     </v-radio-group>
@@ -363,7 +367,7 @@ function onSubmit() {
       Alguém na sua família tem história de doença mental, álcool ou abuso de
       drogas?
     </p>
-    <v-radio-group v-model="historyOfMentalIllness" inline>
+    <v-radio-group required v-model="historyOfMentalIllness" inline>
       <v-radio label="Sim" value="0"></v-radio>
       <v-radio label="Não" value="1"></v-radio>
     </v-radio-group>
@@ -387,6 +391,7 @@ function onSubmit() {
           >
           <v-textarea
             v-model="member.problems"
+            required
             rows="2"
             id="memberProblem"
             name="memberProblem"
@@ -427,7 +432,7 @@ function onSubmit() {
       Algum membro da sua família já morreu por suicídio?
     </p>
 
-    <v-radio-group v-model="anyMemberFamilyDiedBySuicide" inline>
+    <v-radio-group required v-model="anyMemberFamilyDiedBySuicide" inline>
       <v-radio label="Sim" value="0"></v-radio>
       <v-radio label="Não" value="1"></v-radio>
     </v-radio-group>

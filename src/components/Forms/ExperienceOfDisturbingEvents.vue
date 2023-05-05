@@ -31,6 +31,7 @@ function onSubmit() {
 </script>
 <template>
   <Title msg="EXPERIÊNCIA DE ACONTECIMENTOS PERTURBADORES" />
+  <!-- Todos os campos são obrigatórios -->
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <v-alert type="error">Validar as condições de algumas respostas</v-alert>
     <p class="pb-5 font-medium">

@@ -14,6 +14,7 @@ function onSubmit() {
 </script>
 <template>
   <Title msg="SUA HISTÓRIA LABORAL/PROFISSIONAL" />
+  <!-- Todos os campos são obrigatórios -->
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <p class="pb-5 font-medium">
       Que atividade ou papel principal você desempenha atualmente?

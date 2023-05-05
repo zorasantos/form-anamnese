@@ -8,7 +8,6 @@ import { FormDataProps, GenderListProps } from "~/types";
 const genderList = reactive<GenderListProps>([
   { name: "Masculino", value: "M" },
   { name: "Feminino", value: "F" },
-  { name: "Outro", value: "O" },
 ]);
 
 const { handleSubmit, errors, values } = useForm<FormDataProps>({

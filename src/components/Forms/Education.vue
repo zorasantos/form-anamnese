@@ -14,6 +14,7 @@ function onSubmit() {
 </script>
 <template>
   <Title msg="SUA EDUCAÇÃO" />
+  <!-- Todos os campos são obrigatórios -->
 
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <p class="pb-5 font-medium">

@@ -92,6 +92,7 @@ function onSubmit() {
 </script>
 <template>
   <Title msg="SUA HISTÓRIA PSIQUIÁTRICA" />
+  <!-- Todos os campos são obrigatórios -->
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <p class="pb-5 text-lg font-medium">
       Você já foi hospitalizado por algum motivo emocional ou psiquiátrico?

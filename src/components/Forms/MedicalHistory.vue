@@ -49,6 +49,7 @@ function onSubmit() {
 </script>
 <template>
   <Title msg="SUA HISTÓRIA MÉDICA" />
+  <!-- Todos os campos são obrigatórios -->
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <p class="pb-5 text-lg font-medium">
       Você tem um médico de referência que você visita para realização de
@@ -188,6 +189,7 @@ function onSubmit() {
       </v-col>
     </v-row>
 
+    <!-- Validar se o usuário é homem pra condicionar essa pergunta -->
     <p class="pb-5 text-lg font-medium">
       Você está grávida ou acha que pode estar?
     </p>

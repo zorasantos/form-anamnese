@@ -21,6 +21,7 @@ function onSubmit() {
       Por favor, liste resumidamente as três dificuldades principais que o
       levaram a buscar ajuda.
     </p>
+    <!-- Apenas o primeiro campo será obrigatório -->
     <v-textarea
       v-model="difficultFirst"
       rows="2"
@@ -40,6 +41,7 @@ function onSubmit() {
     <p class="pb-5 font-medium">
       Por favor, diga o que você deseja alcançar com a terapia.
     </p>
+    <!-- Não será obrigatório -->
     <v-textarea
       v-model="objective"
       rows="3"

@@ -41,20 +41,23 @@ function onSubmit() {
   <Title msg="SEU PARCEIRO E SUA FAMÍLIA ATUAL" />
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <p class="pb-5 text-lg font-medium">Sobre o(s) seu(s) parceiro(s)</p>
-    <p class="pb-2">
-      Por favor, descreva brevemente o relacionamento(s) anterior(es)
-      importante(s), em ordem cronológica. Inclua o tempo que durou e por que
-      você acha que o(s) relacionamento(s) terminavam.
-    </p>
-
-    <v-textarea autofocus v-model="previousRelationship" rows="2" />
 
     <p class="pb-2">Você tem algum parceiro atualmente?</p>
 
-    <v-radio-group v-model="isCurrentDatingPartner" inline>
+    <v-radio-group required v-model="isCurrentDatingPartner" inline>
       <v-radio label="Sim" value="0" />
       <v-radio label="Não" value="1" />
     </v-radio-group>
+    <!-- Se tiver um parceiro(a) -->
+    <div>
+      <p class="pb-2">
+        Por favor, descreva brevemente o relacionamento(s) anterior(es)
+        importante(s), em ordem cronológica. Inclua o tempo que durou e por que
+        você acha que o(s) relacionamento(s) terminavam.
+      </p>
+    </div>
+
+    <v-textarea v-model="previousRelationship" rows="2" />
 
     <div v-if="isCurrentDatingPartner === '0'">
       <v-text-field
@@ -111,11 +114,11 @@ function onSubmit() {
       Em caso positivo, por favor, tente descrevê-la.
     </p>
 
-    <v-textarea v-model="difficultiesYouSexLife" rows="2" />
+    <v-textarea required v-model="difficultiesYouSexLife" rows="2" />
 
     <p class="pb-5 font-medium">O quanto isso o(a) incomoda atualmente?</p>
 
-    <v-radio-group v-model="isCurrentlyBothers">
+    <v-radio-group required v-model="isCurrentlyBothers">
       <v-radio label="Em absoluto" value="absoluto"></v-radio>
       <v-radio label="Um pouco" value="pouco"></v-radio>
       <v-radio label="Moderadamente" value="moderadamente"></v-radio>
@@ -124,6 +127,9 @@ function onSubmit() {
     </v-radio-group>
 
     <p class="pb-5 font-medium">Sobre seus filhos (se souber)</p>
+
+    <!-- Validar com um radio button se o cliente tem filhos, se sim mostrar as outras informações -->
+    <!-- Se tiver filhos os outros campos serão obrigatórios -->
     <p>
       Se você tiver filhos, liste-os por ordem de idade. Por favor, indique
       algum filho de casamento(s) anterior(es) e filho(s) adotivo(s); indique

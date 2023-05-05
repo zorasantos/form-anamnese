@@ -21,6 +21,10 @@ function onSubmit() {
 <template>
   <Title msg="HISTÓRIA DE USO DE ÁLCOOL E DROGAS" />
   <v-form class="pb-20" @submit.prevent="onSubmit">
+    <!-- Todos os campos são obrigatórios -->
+
+    <!-- Validar se o usuário consome alcool -->
+    <!-- Validar se o usuário consome drogas -->
     <p class="pb-5 text-lg font-medium">
       O seu uso de álcool já lhe causou algum problema?
     </p>

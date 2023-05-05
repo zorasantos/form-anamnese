@@ -14,7 +14,7 @@ function onSubmit() {
 </script>
 <template>
   <Title msg="SUAS PERSPECTIVAS QUANTO AO FUTURO" />
-
+  <!-- Todos os campos são obrigatórios -->
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <p class="pb-5 text-lg font-medium">
       Por favor, mencione alguma satisfação particular que você obtém com a sua
