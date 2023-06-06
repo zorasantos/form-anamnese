@@ -2,13 +2,31 @@
 import { Title } from "~/components";
 import { personalDataSchema } from "../Validators/Schemas";
 import { useField, useForm } from "vee-validate";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { FormDataProps, GenderListProps } from "~/types";
+import { createPersonalData } from "~/services";
 
 const genderList = reactive<GenderListProps>([
   { name: "Masculino", value: "M" },
   { name: "Feminino", value: "F" },
 ]);
+
+const isLoading = ref<boolean>(false);
+const snackProps = reactive({
+  snackMessage: "",
+  snackColor: "success",
+  showSnackbar: false,
+});
+
+const toggleLoading = (value: boolean) => {
+  isLoading.value = value;
+};
+
+const toggleSnackbar = (message: string, color: string) => {
+  snackProps.snackColor = color;
+  snackProps.snackMessage = message;
+  snackProps.showSnackbar = !snackProps.showSnackbar;
+};
 
 const { handleSubmit, errors, values } = useForm<FormDataProps>({
   validationSchema: personalDataSchema,
@@ -28,13 +46,41 @@ useField("neighborhood");
 useField("city");
 useField("state");
 
-const onSubmit = handleSubmit((values) => {
-  console.log(values);
-  alert(JSON.stringify(values, null, 2));
+const onSubmit = handleSubmit(async (values) => {
+  toggleLoading(true);
+
+  try {
+    await createPersonalData(values);
+    toggleSnackbar("Dados salvos com sucesso!", "success");
+  } catch (error) {
+    console.log("error", error);
+    toggleLoading(false);
+
+    toggleSnackbar("Erro ao tentar salvar os dados!", "error");
+  } finally {
+    toggleLoading(false);
+  }
 });
 </script>
 <template>
   <Title msg="SEUS DADOS PESSOAIS" />
+  <v-snackbar
+    v-model="snackProps.showSnackbar"
+    :color="snackProps.snackColor"
+    timeout="5000"
+    location="top"
+  >
+    {{ snackProps.snackMessage }}
+    <template v-slot:actions>
+      <v-btn
+        color="white"
+        variant="text"
+        @click="snackProps.showSnackbar = false"
+      >
+        Close
+      </v-btn>
+    </template>
+  </v-snackbar>
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <v-text-field
       v-model="values.name"
@@ -161,6 +207,11 @@ const onSubmit = handleSubmit((values) => {
       />
     </div>
 
-    <v-btn class="w-full bg-blue-600 text-white" type="submit">Submit</v-btn>
+    <v-btn
+      :loading="isLoading"
+      class="w-full bg-blue-600 text-white"
+      type="submit"
+      >Submit</v-btn
+    >
   </v-form>
 </template>

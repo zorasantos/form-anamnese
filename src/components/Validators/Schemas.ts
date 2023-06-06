@@ -1,7 +1,7 @@
 import * as yup from "yup";
 
 export const personalDataSchema = yup.object({
-  name: yup.string().required(),
+  name: yup.string().required("O campo nome é obrigatório!"),
   birthday: yup.string().required(),
   gender: yup.string().required(),
   occupation: yup.string().required(),
