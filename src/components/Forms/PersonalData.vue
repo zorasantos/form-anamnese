@@ -28,7 +28,7 @@ const toggleSnackbar = (message: string, color: string) => {
   snackProps.showSnackbar = !snackProps.showSnackbar;
 };
 
-const { handleSubmit, errors, values } = useForm<FormDataProps>({
+const { handleSubmit, errors, values, resetForm } = useForm<FormDataProps>({
   validationSchema: personalDataSchema,
 });
 
@@ -52,6 +52,7 @@ const onSubmit = handleSubmit(async (values) => {
   try {
     await createPersonalData(values);
     toggleSnackbar("Dados salvos com sucesso!", "success");
+    resetForm();
   } catch (error) {
     console.log("error", error);
     toggleLoading(false);
