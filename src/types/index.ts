@@ -1,4 +1,4 @@
-export interface FormDataProps {
+export interface IPersonalDataProps {
   name: string;
   birthday: string;
   gender: string;

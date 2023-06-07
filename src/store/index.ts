@@ -11,3 +11,13 @@ export const useCounterStore = defineStore("counter", {
     },
   },
 });
+
+export const useStepperFormStore = defineStore("stepper", {
+  state: () => ({ step: 0 }),
+
+  actions: {
+    nextStepper() {
+      this.step++;
+    },
+  },
+});

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { watch } from "vue";
 import {
   PersonalData,
   DifficultiesAndObjectives,
@@ -13,6 +13,7 @@ import {
   HistoryAlcoholAndDrugsUse,
   PerspectivesForFuture,
 } from "~/components";
+import { useStepperFormStore } from "~/store";
 
 const formComponents = [
   PersonalData,
@@ -28,13 +29,21 @@ const formComponents = [
   PerspectivesForFuture,
 ];
 
-const indexForm = ref(0);
-// const nextForm = () => {
-//   indexForm.value = (indexForm.value + 1) % formComponents.length;
-//   window.scrollTo({ top: 0, behavior: "smooth" });
-// };
+const store = useStepperFormStore();
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
+
+watch(() => store.step, scrollToTop);
 </script>
 <template>
-  <component :is="formComponents[indexForm]" />
-  <!-- <button class="bg-yellow-500 h-14 w-full" @click="nextForm">Next Form</button> -->
+  <v-window v-model="store.step">
+    <v-window-item :value="store.step">
+      <component :is="formComponents[store.step]" />
+    </v-window-item>
+  </v-window>
 </template>

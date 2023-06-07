@@ -1,22 +1,11 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Personal from "~/views/Personal.vue";
-import Difficult from "~/views/Difficult.vue";
+import WrapperForms from "~/views/WrapperForms.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    redirect: "/personal",
-  },
-  {
-    path: "/difficult",
-    name: "Difficult",
-    component: Difficult,
-  },
-  {
-    path: "/personal",
-    name: "Personal",
-    component: Personal,
+    component: WrapperForms,
   },
 ];
 

@@ -3,8 +3,11 @@ import { Title } from "~/components";
 import { personalDataSchema } from "../Validators/Schemas";
 import { useField, useForm } from "vee-validate";
 import { reactive, ref } from "vue";
-import { FormDataProps, GenderListProps } from "~/types";
+import { IPersonalDataProps, GenderListProps } from "~/types";
 import { createPersonalData } from "~/services";
+import { useStepperFormStore } from "~/store";
+
+const store = useStepperFormStore();
 
 const genderList = reactive<GenderListProps>([
   { name: "Masculino", value: "M" },
@@ -12,6 +15,7 @@ const genderList = reactive<GenderListProps>([
 ]);
 
 const isLoading = ref<boolean>(false);
+const isSuccess = ref<boolean>(false);
 const snackProps = reactive({
   snackMessage: "",
   snackColor: "success",
@@ -22,15 +26,23 @@ const toggleLoading = (value: boolean) => {
   isLoading.value = value;
 };
 
+const nextForm = () => {
+  setTimeout(() => {
+    store.nextStepper();
+  }, 5000);
+};
+
 const toggleSnackbar = (message: string, color: string) => {
   snackProps.snackColor = color;
   snackProps.snackMessage = message;
   snackProps.showSnackbar = !snackProps.showSnackbar;
 };
 
-const { handleSubmit, errors, values, resetForm } = useForm<FormDataProps>({
-  validationSchema: personalDataSchema,
-});
+const { handleSubmit, errors, values, resetForm } = useForm<IPersonalDataProps>(
+  {
+    validationSchema: personalDataSchema,
+  },
+);
 
 useField("name");
 useField("birthday");
@@ -51,8 +63,13 @@ const onSubmit = handleSubmit(async (values) => {
 
   try {
     await createPersonalData(values);
-    toggleSnackbar("Dados salvos com sucesso!", "success");
+    toggleSnackbar(
+      "Dados salvos com sucesso! Aguarde, você será redirecionado(a) para o próximo formulário.",
+      "success",
+    );
+    isSuccess.value = !isSuccess.value;
     resetForm();
+    nextForm();
   } catch (error) {
     console.log("error", error);
     toggleLoading(false);
@@ -209,10 +226,10 @@ const onSubmit = handleSubmit(async (values) => {
     </div>
 
     <v-btn
-      :loading="isLoading"
+      :loading="isLoading || isSuccess"
       class="w-full bg-blue-600 text-white"
       type="submit"
-      >Submit</v-btn
+      >Salvar</v-btn
     >
   </v-form>
 </template>
