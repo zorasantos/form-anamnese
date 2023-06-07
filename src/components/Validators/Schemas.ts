@@ -15,3 +15,12 @@ export const personalDataSchema = yup.object({
   city: yup.string().required("O campo cidade é obrigatório!"),
   state: yup.string().required("O campo estado é obrigatório!"),
 });
+
+export const difficultSchema = yup.object({
+  difficultFirst: yup
+    .string()
+    .required("O campo Primeira dificuldade é obrigatório!"),
+  difficultSecond: yup.string(),
+  difficultThird: yup.string(),
+  objective: yup.string(),
+});

@@ -177,7 +177,7 @@ const onSubmit = handleSubmit(async (values) => {
         name="addressDetails"
         label="Complemento"
         :error-messages="errors.addressDetails"
-        placeholder="Insira o um complemento"
+        placeholder="Insira o complemento do endereço"
       />
 
       <v-text-field

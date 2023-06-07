@@ -1,17 +1,22 @@
 import { createWebHistory, createRouter } from "vue-router";
-import Home from "~/views/Home.vue";
-import NewPage from "~/views/ExampleNewRouter.vue";
+import Personal from "~/views/Personal.vue";
+import Difficult from "~/views/Difficult.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    redirect: "/personal",
   },
   {
-    path: "/about",
-    name: "About",
-    component: NewPage,
+    path: "/difficult",
+    name: "Difficult",
+    component: Difficult,
+  },
+  {
+    path: "/personal",
+    name: "Personal",
+    component: Personal,
   },
 ];
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { WrapperForm } from "~/components";
+import PersonalData from "~/components/Forms/PersonalData.vue";
 // import { WrapperForm, TextSupportVue, Title } from "~/components";
 </script>
 
@@ -7,7 +7,7 @@ import { WrapperForm } from "~/components";
   <div class="flex flex-col gap-5">
     <!-- <Title msg="APOIO PARA CONHECER VOCÊ MELHOR" />
     <TextSupportVue /> -->
-    <WrapperForm />
+    <PersonalData />
   </div>
 </template>
 <!-- Criar uma Página que terá o acesso com autenticação e os formulários  -->

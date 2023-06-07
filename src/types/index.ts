@@ -14,6 +14,13 @@ export interface FormDataProps {
   state: string;
 }
 
+export interface IDifficultProps {
+  difficultFirst: string;
+  difficultSecond: string;
+  difficultThird: string;
+  objective: string;
+}
+
 interface Gender {
   name: string;
   value: string;
