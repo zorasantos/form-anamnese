@@ -25,7 +25,7 @@ const snackProps = reactive({
 const toggleLoading = (value: boolean) => {
   isLoading.value = value;
 };
-
+// pode ser um mixin
 const nextForm = () => {
   setTimeout(() => {
     store.nextStepper();

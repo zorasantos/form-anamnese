@@ -1,4 +1,4 @@
-import { IDifficultProps, IPersonalDataProps } from "~/types";
+import { IDifficultProps, ILoginProps, IPersonalDataProps } from "~/types";
 import { api } from "./api";
 
 const baseURL = import.meta.env.VITE_API_BASE_URL;
@@ -9,4 +9,8 @@ export function createPersonalData(payload: IPersonalDataProps) {
 
 export function createDifficulties(payload: IDifficultProps) {
   return api.post(`${baseURL}/difficult`, payload);
+}
+
+export function login(payload: ILoginProps) {
+  return api.post(`${baseURL}/session`, payload);
 }

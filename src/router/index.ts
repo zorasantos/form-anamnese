@@ -1,10 +1,16 @@
 import { createWebHistory, createRouter } from "vue-router";
 import WrapperForms from "~/views/WrapperForms.vue";
+import Login from "~/views/Login.vue";
 
 const routes = [
   {
     path: "/",
-    name: "Home",
+    name: "Login",
+    component: Login,
+  },
+  {
+    path: "/forms",
+    name: "Forms",
     component: WrapperForms,
   },
 ];

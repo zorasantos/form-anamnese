@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import Difficult from "~/components/Forms/DifficultiesAndObjectives.vue";
+import Login from "~/components/Login/index.vue";
 </script>
 
 <template>
   <div class="flex flex-col gap-5">
-    <Difficult />
+    <Login />
   </div>
 </template>

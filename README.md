@@ -30,3 +30,7 @@ that is more performant. You can enable it by the following steps:
       `Disable (Workspace)`
 2. Reload the VSCode window by running `Developer: Reload Window` from the
    command palette.
+
+# Features
+
+1. Desabilitar os inputs caso a requisição seja bem sucedida

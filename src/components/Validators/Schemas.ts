@@ -4,7 +4,7 @@ export const personalDataSchema = yup.object({
   name: yup.string().required("O campo nome é obrigatório!"),
   birthday: yup.string().required("O campo data de nascimento é obrigatório!"),
   gender: yup.string().required("O campo sexo é obrigatório!"),
-  occupation: yup.string().required("O ocupação nome é obrigatório!"),
+  occupation: yup.string().required("O campo ocupação nome é obrigatório!"),
   maritalStatus: yup.string().required("O campo estado civil é obrigatório!"),
   religion: yup.string().required("O campo religião é obrigatório!"),
   zipCode: yup.string().required("O campo CEP é obrigatório!"),
@@ -23,4 +23,12 @@ export const difficultSchema = yup.object({
   difficultSecond: yup.string(),
   difficultThird: yup.string(),
   objective: yup.string(),
+});
+
+export const loginSchema = yup.object({
+  name: yup.string().required("O campo nome é obrigatório!"),
+  token: yup.string().required("O campo token é obrigatório!"),
+  term: yup
+    .boolean()
+    .test("is-true", "O campo termo é obrigatório!", (value) => value === true),
 });

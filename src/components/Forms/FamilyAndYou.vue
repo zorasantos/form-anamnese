@@ -3,17 +3,17 @@ import { ref } from "vue";
 import { Title } from "~/components";
 
 const placeOfBirth = ref("");
-const fatherAge = ref("");
-const fatherDeathAge = ref("");
-const ageWhenFatherDied = ref("");
+const fatherAge = ref(0);
+const fatherDeathAge = ref(0);
+const ageWhenFatherDied = ref(0);
 const fatherOccupation = ref("");
 const fatherDescription = ref("");
-const motherAge = ref("");
-const motherDeathAge = ref("");
-const ageWhenMotherDied = ref("");
+const motherAge = ref(0);
+const motherDeathAge = ref(0);
+const ageWhenMotherDied = ref(0);
 const motherOccupation = ref("");
 const motherDescription = ref("");
-const relationshipProblems = ref("");
+const problemsWithParents = ref("");
 const relationshipBrothers = ref("");
 const atmosphereHome = ref("");
 const importantChanges = ref("");
@@ -24,11 +24,11 @@ const relatedPerson = ref(null);
 const anyMemberFamilySuicideAttempt = ref(null);
 const anyMemberFamilyDiedBySuicide = ref(null);
 
-const members = ref([{ name: "", problems: "" }]);
+const membersWithHistoryOfMentalIllness = ref([{ name: "", problems: "" }]);
 
-const incomoda = ref(null);
-const manyChildren = ref("");
-const personsList = ref([
+const botherYou = ref(null);
+const manyChildrenThereInFamily = ref(0);
+const childrenFamilyList = ref([
   {
     name: "",
     occupation: "",
@@ -43,7 +43,7 @@ const genderOptions = [
   { name: "Feminino", value: "F" },
   { name: "Outro", value: "O" },
 ];
-const persons = ref([
+const children = ref([
   {
     name: "",
     occupation: "",
@@ -54,15 +54,15 @@ const persons = ref([
 ]);
 
 const addMember = () => {
-  members.value.push({ name: "", problems: "" });
+  membersWithHistoryOfMentalIllness.value.push({ name: "", problems: "" });
 };
 
 const removeMember = (index: number) => {
-  members.value.splice(index, 1);
+  membersWithHistoryOfMentalIllness.value.splice(index, 1);
 };
 
-function addPerson() {
-  personsList.value.push({
+function addChildren() {
+  childrenFamilyList.value.push({
     name: "",
     occupation: "",
     age: null,
@@ -76,7 +76,7 @@ function addPerson() {
 // }
 
 function onSubmit() {
-  console.log(members.value);
+  console.log(membersWithHistoryOfMentalIllness.value);
 }
 </script>
 <template>
@@ -210,23 +210,23 @@ function onSubmit() {
     <v-divider />
 
     <label
-      id="relationshipProblems"
-      for="relationshipProblems"
+      id="problemsWithParents"
+      for="problemsWithParents"
       class="font-medium"
       >Se existiram/existem problemas no seu relacionamento com seus pais, por
       favor, descreva o(s) mais importante(s).</label
     >
     <v-textarea
-      v-model="relationshipProblems"
-      id="relationshipProblems"
-      name="relationshipProblems"
+      v-model="problemsWithParents"
+      id="problemsWithParents"
+      name="problemsWithParents"
     />
 
     <p class="pb-5 font-medium">O quanto isso o incomoda atualmente?</p>
-    <v-radio-group v-model="incomoda">
+    <v-radio-group v-model="botherYou">
       <v-radio label="Em absoluto" value="absoluto"></v-radio>
       <v-radio label="Um pouco" value="pouco"></v-radio>
-      <v-radio label="Moderadamente" value="moderadamente"></v-radio>
+      <v-radio label="Moderadamente" value="moderado"></v-radio>
       <v-radio label="Muito" value="muito"></v-radio>
       <v-radio label="Não poderia ser pior" value="pior"></v-radio>
     </v-radio-group>
@@ -235,15 +235,18 @@ function onSubmit() {
       Por favor, dê alguns detalhes sobre seus irmãos e irmãs (se souber)
     </p>
 
-    <label id="manyChildren" for="manyChildren" class="font-medium"
+    <label
+      id="manyChildrenThereInFamily"
+      for="manyChildrenThereInFamily"
+      class="font-medium"
       >Quantos filhos, incluindo você, há na sua família?</label
     >
 
     <v-text-field
-      v-model="manyChildren"
+      v-model="manyChildrenThereInFamily"
       type="number"
-      id="manyChildren"
-      name="manyChildren"
+      id="manyChildrenThereInFamily"
+      name="manyChildrenThereInFamily"
     />
 
     <p class="pb-5 font-medium text-justify">
@@ -253,29 +256,29 @@ function onSubmit() {
       quem são elas.
     </p>
 
-    <fieldset v-for="(person, index) in persons" :key="index">
+    <fieldset v-for="(item, index) in children" :key="index">
       <v-row>
         <v-col cols="12" md="6">
-          <v-text-field density="compact" label="Nome" v-model="person.name" />
+          <v-text-field density="compact" label="Nome" v-model="item.name" />
         </v-col>
         <v-col cols="12" md="6">
           <v-text-field
             density="compact"
             label="Ocupação"
-            v-model="person.occupation"
+            v-model="item.occupation"
           />
         </v-col>
         <v-col cols="12" md="6">
           <v-text-field
             label="Idade"
             density="compact"
-            v-model.number="person.age"
+            v-model.number="item.age"
           />
         </v-col>
         <v-col cols="12" md="6">
           <v-autocomplete
             label="Sexo"
-            v-model="person.gender"
+            v-model="item.gender"
             :items="genderOptions"
             density="compact"
             item-title="name"
@@ -288,11 +291,11 @@ function onSubmit() {
             density="compact"
             rows="3"
             label="Comentários"
-            v-model="person.comments"
+            v-model="item.comments"
           />
         </v-col>
       </v-row>
-      <v-btn color="primary" @click="addPerson">Adicionar</v-btn>
+      <v-btn color="primary" @click="addChildren">Adicionar</v-btn>
     </fieldset>
 
     <label
@@ -373,7 +376,10 @@ function onSubmit() {
     </v-radio-group>
     <div v-if="historyOfMentalIllness === '0'">
       <p class="pb-5 font-medium">Em caso afirmativo, por favor, preencha:</p>
-      <v-row v-for="(member, index) in members" :key="index">
+      <v-row
+        v-for="(member, index) in membersWithHistoryOfMentalIllness"
+        :key="index"
+      >
         <v-col cols="12" md="4">
           <label id="memberName" for="memberProblem" class="font-medium"
             >Membro da família</label

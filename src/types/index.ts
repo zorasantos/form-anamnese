@@ -26,4 +26,10 @@ interface Gender {
   value: string;
 }
 
+export interface ILoginProps {
+  name: string;
+  token: string;
+  term: boolean;
+}
+
 export type GenderListProps = Array<Gender>;
