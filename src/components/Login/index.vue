@@ -18,19 +18,23 @@ const toggleSnackbar = (message: string, color: string) => {
   snackProps.showSnackbar = !snackProps.showSnackbar;
 };
 
-const { handleSubmit, errors, values, resetForm } = useForm<ILoginProps>({
-  validationSchema: loginSchema,
-});
+const { handleSubmit, errors, values, isSubmitting, resetForm } =
+  useForm<ILoginProps>({
+    validationSchema: loginSchema,
+  });
 
 useField("name");
-useField("token");
-useField("term");
+useField("password");
+// useField("term");
 
 const onSubmit = handleSubmit(async (data) => {
   try {
     await login(data);
+    toggleSnackbar("Login realizado com sucesso!", "success");
+    resetForm();
   } catch (error) {
     console.log(error);
+    toggleSnackbar("Nome e/ou token inválido(s). Tente novamente", "error");
   }
 });
 </script>
@@ -66,21 +70,27 @@ const onSubmit = handleSubmit(async (data) => {
     ></v-text-field>
 
     <v-text-field
-      v-model="values.token"
+      v-model="values.password"
       id="token"
       name="token"
       label="Token"
       required
-      :error-messages="errors.token"
+      :error-messages="errors.password"
     ></v-text-field>
 
-    <v-checkbox
+    <!-- <v-checkbox
       v-model="values.term"
       label="Li e estou ciente com os Termos de uso e Política de Privacidade"
       required
       :error-messages="errors.term"
-    ></v-checkbox>
+    ></v-checkbox> -->
 
-    <v-btn class="w-full bg-blue-600 text-white" type="submit"> submit </v-btn>
+    <v-btn
+      :loading="isSubmitting"
+      class="w-full bg-blue-600 text-white"
+      type="submit"
+    >
+      submit
+    </v-btn>
   </v-form>
 </template>

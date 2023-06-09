@@ -27,8 +27,8 @@ export const difficultSchema = yup.object({
 
 export const loginSchema = yup.object({
   name: yup.string().required("O campo nome é obrigatório!"),
-  token: yup.string().required("O campo token é obrigatório!"),
-  term: yup
-    .boolean()
-    .test("is-true", "O campo termo é obrigatório!", (value) => value === true),
+  password: yup.string().required("O campo token é obrigatório!"),
+  // term: yup
+  //   .boolean()
+  //   .test("is-true", "O campo termo é obrigatório!", (value) => value === true),
 });

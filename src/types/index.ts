@@ -28,8 +28,8 @@ interface Gender {
 
 export interface ILoginProps {
   name: string;
-  token: string;
-  term: boolean;
+  password: string;
+  // term: boolean;
 }
 
 export type GenderListProps = Array<Gender>;
