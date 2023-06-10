@@ -1,4 +1,4 @@
-import Alert from "./Alert/index.vue";
+import Snackbar from "./Snackbar/index.vue";
 import Title from "./title/Title.vue";
 import TextSupportVue from "./TextSupport/TextSupport.vue";
 import PersonalData from "./Forms/PersonalData.vue";
@@ -14,7 +14,7 @@ import HistoryAlcoholAndDrugsUse from "./Forms/HistoryAlcoholAndDrugsUse.vue";
 import PerspectivesForFuture from "./Forms/PerspectivesForFuture.vue";
 import WrapperForm from "./WrapperForm/index.vue";
 export {
-  Alert,
+  Snackbar,
   CurrentFamily,
   DifficultiesAndObjectives,
   Education,

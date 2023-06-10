@@ -1,22 +1,12 @@
 <script setup lang="ts">
-import { reactive } from "vue";
 import { useField, useForm } from "vee-validate";
-import { login } from "~/services";
 import { ILoginProps } from "~/types";
-import { Title } from "~/components";
+import { Title, Snackbar } from "~/components";
 import { loginSchema } from "../Validators/Schemas";
+import { useUserStore, useSnackbarStore } from "~/store";
 
-const snackProps = reactive({
-  snackMessage: "",
-  snackColor: "success",
-  showSnackbar: false,
-});
-
-const toggleSnackbar = (message: string, color: string) => {
-  snackProps.snackColor = color;
-  snackProps.snackMessage = message;
-  snackProps.showSnackbar = !snackProps.showSnackbar;
-};
+const userStore = useUserStore();
+const { setSnackbar } = useSnackbarStore();
 
 const { handleSubmit, errors, values, isSubmitting, resetForm } =
   useForm<ILoginProps>({
@@ -29,35 +19,19 @@ useField("password");
 
 const onSubmit = handleSubmit(async (data) => {
   try {
-    await login(data);
-    toggleSnackbar("Login realizado com sucesso!", "success");
+    await userStore.signIn(data);
+    setSnackbar("Login realizado com sucesso!", "success");
     resetForm();
   } catch (error) {
     console.log(error);
-    toggleSnackbar("Nome e/ou token inválido(s). Tente novamente", "error");
+    setSnackbar("Nome e/ou token inválido(s). Tente novamente", "error");
   }
 });
 </script>
 
 <template>
   <Title msg="Login" />
-  <v-snackbar
-    v-model="snackProps.showSnackbar"
-    :color="snackProps.snackColor"
-    timeout="5000"
-    location="top"
-  >
-    {{ snackProps.snackMessage }}
-    <template v-slot:actions>
-      <v-btn
-        color="white"
-        variant="text"
-        @click="snackProps.showSnackbar = false"
-      >
-        Close
-      </v-btn>
-    </template>
-  </v-snackbar>
+  <Snackbar />
   <v-form @submit.prevent="onSubmit">
     <v-text-field
       v-model="values.name"
