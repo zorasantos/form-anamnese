@@ -1,12 +1,17 @@
 <script setup lang="ts">
+import { useRouter } from "vue-router";
 import { useField, useForm } from "vee-validate";
 import { ILoginProps } from "~/types";
-import { Title, Snackbar } from "~/components";
+import { Title } from "~/components";
 import { loginSchema } from "../Validators/Schemas";
-import { useUserStore, useSnackbarStore } from "~/store";
+import { useUserStore } from "~/store";
+import { onBeforeMount, ref } from "vue";
+import { getIsTermsOfUse } from "~/services";
 
 const userStore = useUserStore();
-const { setSnackbar } = useSnackbarStore();
+const router = useRouter();
+
+const isTermsOfUse = ref(false);
 
 const { handleSubmit, errors, values, isSubmitting, resetForm } =
   useForm<ILoginProps>({
@@ -15,23 +20,25 @@ const { handleSubmit, errors, values, isSubmitting, resetForm } =
 
 useField("name");
 useField("password");
-// useField("term");
+useField("term");
 
 const onSubmit = handleSubmit(async (data) => {
-  try {
-    await userStore.signIn(data);
-    setSnackbar("Login realizado com sucesso!", "success");
+  await userStore.signIn(data);
+  if (userStore.token) {
+    router.push("/forms");
     resetForm();
-  } catch (error) {
-    console.log(error);
-    setSnackbar("Nome e/ou token inválido(s). Tente novamente", "error");
   }
+});
+
+onBeforeMount(async () => {
+  const response = await getIsTermsOfUse(values.name);
+  localStorage.setItem("isTermsOfUse", response.data.isTermsOfUse);
+  isTermsOfUse.value = response.data.isTermsOfUse;
 });
 </script>
 
 <template>
   <Title msg="Login" />
-  <Snackbar />
   <v-form @submit.prevent="onSubmit">
     <v-text-field
       v-model="values.name"
@@ -52,19 +59,19 @@ const onSubmit = handleSubmit(async (data) => {
       :error-messages="errors.password"
     ></v-text-field>
 
-    <!-- <v-checkbox
+    <v-checkbox
+      v-if="!isTermsOfUse"
       v-model="values.term"
       label="Li e estou ciente com os Termos de uso e Política de Privacidade"
-      required
       :error-messages="errors.term"
-    ></v-checkbox> -->
+    />
 
     <v-btn
       :loading="isSubmitting"
       class="w-full bg-blue-600 text-white"
       type="submit"
     >
-      submit
+      Entrar
     </v-btn>
   </v-form>
 </template>

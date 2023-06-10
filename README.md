@@ -34,3 +34,5 @@ that is more performant. You can enable it by the following steps:
 # Features
 
 1. Desabilitar os inputs caso a requisição seja bem sucedida
+2. Trocar os snacks local pelo global
+3. Fazer o plugin do snackbar funcionar

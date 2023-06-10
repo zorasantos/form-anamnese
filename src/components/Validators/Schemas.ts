@@ -28,7 +28,20 @@ export const difficultSchema = yup.object({
 export const loginSchema = yup.object({
   name: yup.string().required("O campo nome é obrigatório!"),
   password: yup.string().required("O campo token é obrigatório!"),
-  // term: yup
-  //   .boolean()
-  //   .test("is-true", "O campo termo é obrigatório!", (value) => value === true),
+  term: yup.lazy(() => {
+    const value = localStorage.getItem("isTermsOfUse");
+    const isTermsOfUse = JSON.parse(value as string);
+
+    if (!isTermsOfUse) {
+      return yup
+        .boolean()
+        .test(
+          "is-true",
+          "O campo termo é obrigatório!",
+          (value) => value === true,
+        );
+    } else {
+      return yup.boolean();
+    }
+  }),
 });

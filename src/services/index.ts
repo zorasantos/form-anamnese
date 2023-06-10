@@ -14,3 +14,7 @@ export function createDifficulties(payload: IDifficultProps) {
 export function login(payload: ILoginProps) {
   return api.post(`${baseURL}/session`, payload);
 }
+
+export function getIsTermsOfUse(name: string) {
+  return api.post(`${baseURL}/term`, name);
+}
