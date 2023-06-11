@@ -1,5 +1,4 @@
 import axios, { AxiosResponse } from "axios";
-const token = localStorage.getItem("token") as string;
 
 export const api = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -7,6 +6,8 @@ export const api = axios.create({
 
 api.interceptors.request.use(
   (request) => {
+    const token = localStorage.getItem("token") as string;
+
     request.headers.Authorization = token;
     return request;
   },
@@ -20,8 +21,7 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
-    const code = error && error.response ? error.response.status : 0;
-    if (code === 401) {
+    if (error.response.status === 401) {
       window.location.href = "/";
       localStorage.clear();
     }
