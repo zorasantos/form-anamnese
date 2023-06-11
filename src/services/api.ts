@@ -22,9 +22,8 @@ api.interceptors.response.use(
   (error) => {
     const code = error && error.response ? error.response.status : 0;
     if (code === 401 || code === 403) {
-      if (window.location.pathname !== "/auth/login") {
-        window.location.href = "/auth/login";
-      }
+      window.location.href = "/";
+      localStorage.clear();
     }
 
     if (

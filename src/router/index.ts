@@ -3,7 +3,7 @@ import WrapperForms from "~/views/WrapperForms.vue";
 import Login from "~/views/Login.vue";
 import { useUserStore } from "~/store";
 
-const routes = [
+export const routes = [
   {
     path: "/",
     name: "Login",

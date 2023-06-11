@@ -3,6 +3,7 @@ import { defineStore } from "pinia";
 import { getIsTermsOfUse, login } from "~/services";
 import { ILoginProps } from "~/types";
 import { useSnackbarStore } from ".";
+import { router } from "~/router";
 
 export const useUserStore = defineStore("user", {
   state: () => ({
@@ -35,6 +36,7 @@ export const useUserStore = defineStore("user", {
           storeSnackbar.setSnackbar("Login realizado com sucesso!", "success");
           localStorage.setItem("token", response.data.token);
           this.setToken(response.data.token);
+          router.push("/forms");
         }
       } catch (error) {
         storeSnackbar.setSnackbar(

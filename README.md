@@ -36,3 +36,6 @@ that is more performant. You can enable it by the following steps:
 1. Desabilitar os inputs caso a requisição seja bem sucedida
 2. Trocar os snacks local pelo global
 3. Fazer o plugin do snackbar funcionar
+4. Implementar recaptcha
+5. Corrigir redirect em produção. Quando o token é removido depois de o usuário estar logado e dar um F5 na página,
+   o sistema não consegue redirecionar para a tela de login.

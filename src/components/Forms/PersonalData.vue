@@ -2,47 +2,30 @@
 import { Title } from "~/components";
 import { personalDataSchema } from "../Validators/Schemas";
 import { useField, useForm } from "vee-validate";
-import { reactive, ref } from "vue";
+import { reactive } from "vue";
 import { IPersonalDataProps, GenderListProps } from "~/types";
-import { createPersonalData } from "~/services";
-import { useStepperFormStore } from "~/store";
 
-const store = useStepperFormStore();
+import { usePersonalDataStore, useStepperFormStore } from "~/store";
+
+const personalDataStore = usePersonalDataStore();
+const stepperStore = useStepperFormStore();
 
 const genderList = reactive<GenderListProps>([
   { name: "Masculino", value: "M" },
   { name: "Feminino", value: "F" },
 ]);
 
-const isLoading = ref<boolean>(false);
-const isSuccess = ref<boolean>(false);
-const snackProps = reactive({
-  snackMessage: "",
-  snackColor: "success",
-  showSnackbar: false,
-});
-
-const toggleLoading = (value: boolean) => {
-  isLoading.value = value;
-};
-// pode ser um mixin
+// pode ser um mixin ou vai para store de cada form
 const nextForm = () => {
   setTimeout(() => {
-    store.nextStepper();
+    stepperStore.nextStepper();
   }, 5000);
 };
 
-const toggleSnackbar = (message: string, color: string) => {
-  snackProps.snackColor = color;
-  snackProps.snackMessage = message;
-  snackProps.showSnackbar = !snackProps.showSnackbar;
-};
-
-const { handleSubmit, errors, values, resetForm } = useForm<IPersonalDataProps>(
-  {
+const { handleSubmit, errors, values, isSubmitting, resetForm } =
+  useForm<IPersonalDataProps>({
     validationSchema: personalDataSchema,
-  },
-);
+  });
 
 useField("name");
 useField("birthday");
@@ -59,49 +42,17 @@ useField("city");
 useField("state");
 
 const onSubmit = handleSubmit(async (values) => {
-  toggleLoading(true);
-
-  try {
-    await createPersonalData(values);
-    toggleSnackbar(
-      "Dados salvos com sucesso! Aguarde, você será redirecionado(a) para o próximo formulário.",
-      "success",
-    );
-    isSuccess.value = !isSuccess.value;
-    resetForm();
-    nextForm();
-  } catch (error) {
-    console.log("error", error);
-    toggleLoading(false);
-
-    toggleSnackbar("Erro ao tentar salvar os dados!", "error");
-  } finally {
-    toggleLoading(false);
-  }
+  await personalDataStore.personalData(values);
+  nextForm();
+  resetForm();
 });
 </script>
 <template>
   <Title msg="SEUS DADOS PESSOAIS" />
-  <v-snackbar
-    v-model="snackProps.showSnackbar"
-    :color="snackProps.snackColor"
-    timeout="5000"
-    location="top"
-  >
-    {{ snackProps.snackMessage }}
-    <template v-slot:actions>
-      <v-btn
-        color="white"
-        variant="text"
-        @click="snackProps.showSnackbar = false"
-      >
-        Close
-      </v-btn>
-    </template>
-  </v-snackbar>
   <v-form class="pb-20" @submit.prevent="onSubmit">
     <v-text-field
       v-model="values.name"
+      :disabled="isSubmitting || personalDataStore.isSuccess"
       autofocus
       id="name"
       name="name"
@@ -113,6 +64,7 @@ const onSubmit = handleSubmit(async (values) => {
 
     <v-text-field
       v-model="values.birthday"
+      :disabled="isSubmitting || personalDataStore.isSuccess"
       id="birthday"
       name="birthday"
       label="Data de Nascimento"
@@ -123,6 +75,7 @@ const onSubmit = handleSubmit(async (values) => {
     <v-autocomplete
       v-model="values.gender"
       :items="genderList"
+      :disabled="isSubmitting || personalDataStore.isSuccess"
       name="gender"
       label="Sexo"
       item-title="name"
@@ -133,6 +86,7 @@ const onSubmit = handleSubmit(async (values) => {
 
     <v-text-field
       v-model="values.occupation"
+      :disabled="isSubmitting || personalDataStore.isSuccess"
       id="occupation"
       name="occupation"
       label="Ocupação"
@@ -142,6 +96,7 @@ const onSubmit = handleSubmit(async (values) => {
 
     <v-text-field
       v-model="values.maritalStatus"
+      :disabled="isSubmitting || personalDataStore.isSuccess"
       id="maritalStatus"
       name="maritalStatus"
       label="Estado Civil"
@@ -151,6 +106,7 @@ const onSubmit = handleSubmit(async (values) => {
 
     <v-text-field
       v-model="values.religion"
+      :disabled="isSubmitting || personalDataStore.isSuccess"
       id="religion"
       name="religion"
       label="Religião"
@@ -163,6 +119,7 @@ const onSubmit = handleSubmit(async (values) => {
     <div>
       <v-text-field
         v-model="values.zipCode"
+        :disabled="isSubmitting || personalDataStore.isSuccess"
         id="zipCode"
         name="zipCode"
         label="CEP"
@@ -172,6 +129,7 @@ const onSubmit = handleSubmit(async (values) => {
 
       <v-text-field
         v-model="values.street"
+        :disabled="isSubmitting || personalDataStore.isSuccess"
         id="street"
         name="street"
         label="Rua"
@@ -181,6 +139,7 @@ const onSubmit = handleSubmit(async (values) => {
 
       <v-text-field
         v-model="values.number"
+        :disabled="isSubmitting || personalDataStore.isSuccess"
         id="number"
         name="number"
         label="Número"
@@ -190,6 +149,7 @@ const onSubmit = handleSubmit(async (values) => {
 
       <v-text-field
         v-model="values.addressDetails"
+        :disabled="isSubmitting || personalDataStore.isSuccess"
         id="addressDetails"
         name="addressDetails"
         label="Complemento"
@@ -199,6 +159,7 @@ const onSubmit = handleSubmit(async (values) => {
 
       <v-text-field
         v-model="values.neighborhood"
+        :disabled="isSubmitting || personalDataStore.isSuccess"
         id="neighborhood"
         name="neighborhood"
         label="Bairro"
@@ -208,6 +169,7 @@ const onSubmit = handleSubmit(async (values) => {
 
       <v-text-field
         v-model="values.city"
+        :disabled="isSubmitting || personalDataStore.isSuccess"
         id="city"
         name="city"
         label="Cidade"
@@ -217,6 +179,7 @@ const onSubmit = handleSubmit(async (values) => {
 
       <v-text-field
         v-model="values.state"
+        :disabled="isSubmitting || personalDataStore.isSuccess"
         id="state"
         name="state"
         label="Estado"
@@ -226,7 +189,7 @@ const onSubmit = handleSubmit(async (values) => {
     </div>
 
     <v-btn
-      :loading="isLoading || isSuccess"
+      :loading="isSubmitting || personalDataStore.isSuccess"
       class="w-full bg-blue-600 text-white"
       type="submit"
       >Salvar</v-btn

@@ -1,19 +1,16 @@
 <script setup lang="ts">
-import { useRouter } from "vue-router";
 import { useField, useForm } from "vee-validate";
 import { ILoginProps } from "~/types";
 import { Title, TermsOfUse } from "~/components";
 import { loginSchema } from "../Validators/Schemas";
 import { useUserStore } from "~/store";
-import { watchEffect } from "vue";
+import { watchEffect, onMounted } from "vue";
 
 const userStore = useUserStore();
-const router = useRouter();
 
-const { handleSubmit, errors, values, isSubmitting, resetForm } =
-  useForm<ILoginProps>({
-    validationSchema: loginSchema,
-  });
+const { handleSubmit, errors, values, isSubmitting } = useForm<ILoginProps>({
+  validationSchema: loginSchema,
+});
 
 watchEffect(() => (values.term = userStore.term));
 
@@ -21,12 +18,12 @@ useField("name");
 useField("password");
 useField("term");
 
+onMounted(() => {
+  localStorage.clear();
+});
+
 const onSubmit = handleSubmit(async (data) => {
   await userStore.signIn(data);
-  if (userStore.token) {
-    router.push("/forms");
-    resetForm();
-  }
 });
 </script>
 
