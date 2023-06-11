@@ -2,21 +2,20 @@
 import { useRouter } from "vue-router";
 import { useField, useForm } from "vee-validate";
 import { ILoginProps } from "~/types";
-import { Title } from "~/components";
+import { Title, TermsOfUse } from "~/components";
 import { loginSchema } from "../Validators/Schemas";
 import { useUserStore } from "~/store";
-import { onBeforeMount, ref } from "vue";
-import { getIsTermsOfUse } from "~/services";
+import { watchEffect } from "vue";
 
 const userStore = useUserStore();
 const router = useRouter();
-
-const isTermsOfUse = ref(false);
 
 const { handleSubmit, errors, values, isSubmitting, resetForm } =
   useForm<ILoginProps>({
     validationSchema: loginSchema,
   });
+
+watchEffect(() => (values.term = userStore.term));
 
 useField("name");
 useField("password");
@@ -29,16 +28,11 @@ const onSubmit = handleSubmit(async (data) => {
     resetForm();
   }
 });
-
-onBeforeMount(async () => {
-  const response = await getIsTermsOfUse(values.name);
-  localStorage.setItem("isTermsOfUse", response.data.isTermsOfUse);
-  isTermsOfUse.value = response.data.isTermsOfUse;
-});
 </script>
 
 <template>
   <Title msg="Login" />
+  <TermsOfUse />
   <v-form @submit.prevent="onSubmit">
     <v-text-field
       v-model="values.name"
@@ -60,7 +54,7 @@ onBeforeMount(async () => {
     ></v-text-field>
 
     <v-checkbox
-      v-if="!isTermsOfUse"
+      v-if="userStore.isTermsOfUse"
       v-model="values.term"
       label="Li e estou ciente com os Termos de uso e Política de Privacidade"
       :error-messages="errors.term"

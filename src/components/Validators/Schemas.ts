@@ -32,7 +32,7 @@ export const loginSchema = yup.object({
     const value = localStorage.getItem("isTermsOfUse");
     const isTermsOfUse = JSON.parse(value as string);
 
-    if (!isTermsOfUse) {
+    if (isTermsOfUse) {
       return yup
         .boolean()
         .test(

@@ -16,5 +16,5 @@ export function login(payload: ILoginProps) {
 }
 
 export function getIsTermsOfUse(name: string) {
-  return api.post(`${baseURL}/term`, name);
+  return api.post(`${baseURL}/term`, { name });
 }
