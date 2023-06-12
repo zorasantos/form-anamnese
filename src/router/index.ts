@@ -23,11 +23,15 @@ export const router = createRouter({
 });
 
 router.beforeEach(async (to) => {
-  const userStore = useUserStore();
-
-  if (to.meta.requiresAuth && !userStore.token) {
-    return {
-      path: "/",
-    };
+  if (to.meta.requiresAuth) {
+    const userStore = useUserStore();
+    const result = await userStore.checkToken();
+    if (!userStore.token || !result.isVerified) {
+      return {
+        path: "/",
+      };
+    } else {
+      to.name;
+    }
   }
 });

@@ -18,3 +18,7 @@ export function login(payload: ILoginProps) {
 export function getIsTermsOfUse(name: string) {
   return api.post(`${baseURL}/term`, { name });
 }
+
+export function verifyToken(token: string) {
+  return api.post(`${baseURL}/verify`, { token });
+}

@@ -4,7 +4,7 @@ import { ILoginProps } from "~/types";
 import { Title, TermsOfUse } from "~/components";
 import { loginSchema } from "../Validators/Schemas";
 import { useUserStore } from "~/store";
-import { watchEffect, onMounted } from "vue";
+import { watchEffect } from "vue";
 
 const userStore = useUserStore();
 
@@ -17,10 +17,6 @@ watchEffect(() => (values.term = userStore.term));
 useField("name");
 useField("password");
 useField("term");
-
-onMounted(() => {
-  localStorage.clear();
-});
 
 const onSubmit = handleSubmit(async (data) => {
   await userStore.signIn(data);
@@ -35,7 +31,6 @@ const onSubmit = handleSubmit(async (data) => {
       v-model="values.name"
       id="name"
       name="name"
-      :counter="10"
       label="Nome"
       required
       :error-messages="errors.name"

@@ -1,11 +1,11 @@
 import { defineStore } from "pinia";
 
-import { getIsTermsOfUse, login } from "~/services";
+import { getIsTermsOfUse, login, verifyToken } from "~/services";
 import { ILoginProps } from "~/types";
 import { useSnackbarStore } from ".";
 import { router } from "~/router";
 
-export const useUserStore = defineStore("user", {
+export const useUserStore = defineStore("auth", {
   state: () => ({
     token: "",
     isLogged: false,
@@ -33,9 +33,10 @@ export const useUserStore = defineStore("user", {
         if (response.data.isTermsOfUse || this.term || data.term) {
           const response = await login(data);
           localStorage.removeItem("isTermsOfUse");
-          storeSnackbar.setSnackbar("Login realizado com sucesso!", "success");
           localStorage.setItem("token", response.data.token);
-          this.setToken(response.data.token);
+          const token = localStorage.getItem("token") as string;
+          this.setToken(token);
+          storeSnackbar.setSnackbar("Login realizado com sucesso!", "success");
           router.push("/forms");
         }
       } catch (error) {
@@ -43,6 +44,17 @@ export const useUserStore = defineStore("user", {
           "Nome e/ou token inválido(s). Tente novamente",
           "error",
         );
+        return error;
+      }
+    },
+    async checkToken() {
+      const storeSnackbar = useSnackbarStore();
+      try {
+        const response = await verifyToken(this.token);
+
+        return response.data;
+      } catch (error) {
+        storeSnackbar.setSnackbar("Ocorreu um erro inesperado!", "error");
         return error;
       }
     },
