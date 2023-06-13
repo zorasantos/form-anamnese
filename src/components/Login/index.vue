@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useField, useForm } from "vee-validate";
 import { ILoginProps } from "~/types";
-import { Title, TermsOfUse } from "~/components";
+import { Title, TermsOfUse, TextField } from "~/components";
 import { loginSchema } from "../Validators/Schemas";
 import { useUserStore } from "~/store";
 import { watchEffect } from "vue";
@@ -27,23 +27,23 @@ const onSubmit = handleSubmit(async (data) => {
   <Title msg="Login" />
   <TermsOfUse />
   <v-form @submit.prevent="onSubmit">
-    <v-text-field
+    <TextField
       v-model="values.name"
       id="name"
       name="name"
       label="Nome"
       required
       :error-messages="errors.name"
-    ></v-text-field>
+    />
 
-    <v-text-field
+    <TextField
       v-model="values.password"
       id="token"
       name="token"
       label="Token"
       required
       :error-messages="errors.password"
-    ></v-text-field>
+    />
 
     <v-checkbox
       v-if="userStore.isTermsOfUse"

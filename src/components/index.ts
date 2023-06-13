@@ -14,6 +14,7 @@ import MedicalHistory from "./Forms/MedicalHistory.vue";
 import HistoryAlcoholAndDrugsUse from "./Forms/HistoryAlcoholAndDrugsUse.vue";
 import PerspectivesForFuture from "./Forms/PerspectivesForFuture.vue";
 import WrapperForm from "./WrapperForm/index.vue";
+import TextField from "./TextField/index.vue";
 export {
   Snackbar,
   CurrentFamily,
@@ -27,6 +28,7 @@ export {
   PerspectivesForFuture,
   Professional,
   PsychiatricHistory,
+  TextField,
   TextSupportVue,
   Title,
   TermsOfUse,
