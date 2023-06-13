@@ -38,3 +38,4 @@ that is more performant. You can enable it by the following steps:
 3. Fazer o plugin do snackbar funcionar
 4. Implementar recaptcha
 5. Corrigir redirect em produção. Quando o token é removido depois de o usuário estar logado e dar um F5 na página, o sistema não consegue redirecionar para a tela de login.
+6. Rever testes do checkbox
