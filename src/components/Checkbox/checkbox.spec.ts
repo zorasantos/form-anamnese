@@ -42,6 +42,8 @@ describe("CheckBox", () => {
       },
     });
 
+    // Possivelmente temos que mockar toda a lógica do checkbox
+
     wrapper.vm.$emit("update:modelValue", true);
 
     const value = wrapper.emitted("update:modelValue") as Array<[][]>;

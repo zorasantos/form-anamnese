@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useField, useForm } from "vee-validate";
 import { ILoginProps } from "~/types";
-import { Title, TermsOfUse, TextField, CheckBox } from "~/components";
+import { Button, Title, TermsOfUse, TextField, CheckBox } from "~/components";
 import { loginSchema } from "../Validators/Schemas";
 import { useUserStore } from "~/store";
 import { watchEffect } from "vue";
@@ -32,7 +32,6 @@ const onSubmit = handleSubmit(async (data) => {
       id="name"
       name="name"
       label="Nome"
-      required
       :error-messages="errors.name"
     />
 
@@ -41,7 +40,6 @@ const onSubmit = handleSubmit(async (data) => {
       id="token"
       name="token"
       label="Token"
-      required
       :error-messages="errors.password"
     />
 
@@ -52,12 +50,11 @@ const onSubmit = handleSubmit(async (data) => {
       :error-messages="errors.term"
     />
 
-    <v-btn
+    <Button
+      addStyle="mt-5"
       :loading="isSubmitting"
-      class="w-full bg-blue-600 text-white mt-5"
       type="submit"
-    >
-      Entrar
-    </v-btn>
+      text="Entrar"
+    />
   </form>
 </template>

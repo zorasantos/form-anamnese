@@ -1,23 +1,25 @@
-import Snackbar from "./Snackbar/index.vue";
-import Title from "./Title/Title.vue";
-import TextSupportVue from "./TextSupport/TextSupport.vue";
-import TermsOfUse from "./TermsOfUse/index.vue";
-import PersonalData from "./Forms/PersonalData.vue";
-import DifficultiesAndObjectives from "./Forms/DifficultiesAndObjectives.vue";
-import FamilyAndYou from "./Forms/FamilyAndYou.vue";
-import Education from "./Forms/Education.vue";
-import Professional from "./Forms/Professional.vue";
-import ExperienceOfDisturbingEvents from "./Forms/ExperienceOfDisturbingEvents.vue";
-import CurrentFamily from "./Forms/CurrentFamily.vue";
-import PsychiatricHistory from "./Forms/PsychiatricHistory.vue";
-import MedicalHistory from "./Forms/MedicalHistory.vue";
-import HistoryAlcoholAndDrugsUse from "./Forms/HistoryAlcoholAndDrugsUse.vue";
-import PerspectivesForFuture from "./Forms/PerspectivesForFuture.vue";
-import WrapperForm from "./WrapperForm/index.vue";
-import TextField from "./TextField/index.vue";
+import Button from "./Button/index.vue";
 import CheckBox from "./Checkbox/index.vue";
+import CurrentFamily from "./Forms/CurrentFamily.vue";
+import DifficultiesAndObjectives from "./Forms/DifficultiesAndObjectives.vue";
+import Education from "./Forms/Education.vue";
+import ExperienceOfDisturbingEvents from "./Forms/ExperienceOfDisturbingEvents.vue";
+import FamilyAndYou from "./Forms/FamilyAndYou.vue";
+import HistoryAlcoholAndDrugsUse from "./Forms/HistoryAlcoholAndDrugsUse.vue";
+import MedicalHistory from "./Forms/MedicalHistory.vue";
+import PersonalData from "./Forms/PersonalData.vue";
+import PerspectivesForFuture from "./Forms/PerspectivesForFuture.vue";
+import Professional from "./Forms/Professional.vue";
+import PsychiatricHistory from "./Forms/PsychiatricHistory.vue";
+import Snackbar from "./Snackbar/index.vue";
+import TextField from "./TextField/index.vue";
+import TermsOfUse from "./TermsOfUse/index.vue";
+import TextSupportVue from "./TextSupport/TextSupport.vue";
+import Title from "./Title/Title.vue";
+import WrapperForm from "./WrapperForm/index.vue";
 
 export {
+  Button,
   CheckBox,
   CurrentFamily,
   DifficultiesAndObjectives,
@@ -32,8 +34,8 @@ export {
   PsychiatricHistory,
   Snackbar,
   TextField,
+  TermsOfUse,
   TextSupportVue,
   Title,
-  TermsOfUse,
   WrapperForm,
 };
