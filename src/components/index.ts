@@ -1,5 +1,5 @@
 import Snackbar from "./Snackbar/index.vue";
-import Title from "./title/Title.vue";
+import Title from "./Title/Title.vue";
 import TextSupportVue from "./TextSupport/TextSupport.vue";
 import TermsOfUse from "./TermsOfUse/index.vue";
 import PersonalData from "./Forms/PersonalData.vue";
