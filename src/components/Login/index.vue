@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useField, useForm } from "vee-validate";
 import { ILoginProps } from "~/types";
-import { Title, TermsOfUse, TextField } from "~/components";
+import { Title, TermsOfUse, TextField, CheckBox } from "~/components";
 import { loginSchema } from "../Validators/Schemas";
 import { useUserStore } from "~/store";
 import { watchEffect } from "vue";
@@ -26,7 +26,7 @@ const onSubmit = handleSubmit(async (data) => {
 <template>
   <Title msg="Login" />
   <TermsOfUse />
-  <v-form @submit.prevent="onSubmit">
+  <form @submit.prevent="onSubmit">
     <TextField
       v-model="values.name"
       id="name"
@@ -45,7 +45,7 @@ const onSubmit = handleSubmit(async (data) => {
       :error-messages="errors.password"
     />
 
-    <v-checkbox
+    <CheckBox
       v-if="userStore.isTermsOfUse"
       v-model="values.term"
       label="Li e estou ciente com os Termos de uso e Política de Privacidade"
@@ -54,10 +54,10 @@ const onSubmit = handleSubmit(async (data) => {
 
     <v-btn
       :loading="isSubmitting"
-      class="w-full bg-blue-600 text-white"
+      class="w-full bg-blue-600 text-white mt-5"
       type="submit"
     >
       Entrar
     </v-btn>
-  </v-form>
+  </form>
 </template>

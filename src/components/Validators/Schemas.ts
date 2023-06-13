@@ -31,7 +31,6 @@ export const loginSchema = yup.object({
   term: yup.lazy(() => {
     const value = localStorage.getItem("isTermsOfUse");
     const isTermsOfUse = JSON.parse(value as string);
-
     if (isTermsOfUse) {
       return yup
         .boolean()

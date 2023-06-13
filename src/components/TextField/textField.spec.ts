@@ -31,7 +31,7 @@ describe("TextField", () => {
     });
 
     expect(wrapper.find("label").classes("text-red-500")).toBe(true);
-    expect(wrapper.find("label").classes("text-[#4C565D]")).toBe(false);
+    expect(wrapper.find("label").classes("text-gray-600")).toBe(false);
 
     expect(wrapper.text()).toContain("Nome é um campo obrigatório!");
     expect(wrapper.find("span").classes("text-red-500")).toBe(true);

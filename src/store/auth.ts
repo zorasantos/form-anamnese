@@ -77,7 +77,6 @@ export const useUserStore = defineStore("auth", {
 
     cancelDialog() {
       this.showDialog = !this.showDialog;
-      localStorage.removeItem("isTermsOfUse");
     },
   },
 });

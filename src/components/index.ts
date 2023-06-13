@@ -15,8 +15,10 @@ import HistoryAlcoholAndDrugsUse from "./Forms/HistoryAlcoholAndDrugsUse.vue";
 import PerspectivesForFuture from "./Forms/PerspectivesForFuture.vue";
 import WrapperForm from "./WrapperForm/index.vue";
 import TextField from "./TextField/index.vue";
+import CheckBox from "./Checkbox/index.vue";
+
 export {
-  Snackbar,
+  CheckBox,
   CurrentFamily,
   DifficultiesAndObjectives,
   Education,
@@ -28,6 +30,7 @@ export {
   PerspectivesForFuture,
   Professional,
   PsychiatricHistory,
+  Snackbar,
   TextField,
   TextSupportVue,
   Title,
