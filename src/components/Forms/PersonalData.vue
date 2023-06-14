@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Title } from "~/components";
+import { Title, TextField } from "~/components";
 import { personalDataSchema } from "../Validators/Schemas";
 import { useField, useForm } from "vee-validate";
 import { reactive } from "vue";
@@ -50,7 +50,7 @@ const onSubmit = handleSubmit(async (values) => {
 <template>
   <Title msg="SEUS DADOS PESSOAIS" />
   <v-form class="pb-20" @submit.prevent="onSubmit">
-    <v-text-field
+    <TextField
       v-model="values.name"
       :disabled="isSubmitting || personalDataStore.isSuccess"
       autofocus
@@ -61,6 +61,17 @@ const onSubmit = handleSubmit(async (values) => {
       :error-messages="errors.name"
       placeholder="Insira seu nome completo"
     />
+    <!-- <v-text-field
+      v-model="values.name"
+      :disabled="isSubmitting || personalDataStore.isSuccess"
+      autofocus
+      id="name"
+      name="name"
+      label="Nome"
+      type="text"
+      :error-messages="errors.name"
+      placeholder="Insira seu nome completo"
+    /> -->
 
     <v-text-field
       v-model="values.birthday"
