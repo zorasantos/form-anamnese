@@ -27,6 +27,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.45.4",
     "axios": "^1.4.0",
     "lib-ui-vue": "^0.2.0",
     "pinia": "^2.0.33",

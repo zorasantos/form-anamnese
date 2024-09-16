@@ -8,7 +8,7 @@ export interface IPersonalDataProps {
   zipCode: string;
   street: string;
   number: string;
-  addressDetails: string;
+  addressDetails?: string;
   neighborhood: string;
   city: string;
   state: string;

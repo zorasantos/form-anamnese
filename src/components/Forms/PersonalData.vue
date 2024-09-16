@@ -61,17 +61,6 @@ const onSubmit = handleSubmit(async (values) => {
       :error-messages="errors.name"
       placeholder="Insira seu nome completo"
     />
-    <!-- <v-text-field
-      v-model="values.name"
-      :disabled="isSubmitting || personalDataStore.isSuccess"
-      autofocus
-      id="name"
-      name="name"
-      label="Nome"
-      type="text"
-      :error-messages="errors.name"
-      placeholder="Insira seu nome completo"
-    /> -->
 
     <v-text-field
       v-model="values.birthday"
@@ -164,7 +153,6 @@ const onSubmit = handleSubmit(async (values) => {
         id="addressDetails"
         name="addressDetails"
         label="Complemento"
-        :error-messages="errors.addressDetails"
         placeholder="Insira o complemento do endereço"
       />
 
